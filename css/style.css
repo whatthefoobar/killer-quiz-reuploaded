@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-@import url('http://fonts.cdnfonts.com/css/dinobots');
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+@import url("http://fonts.cdnfonts.com/css/dinobots");
 * {
   margin: 0;
   padding: 0;
@@ -10,11 +10,11 @@ body {
   background-color: #333;
   color: antiquewhite;
   overflow-y: hidden;
-  font-family: 'Varela Round', sans-serif;
+  font-family: "Varela Round", sans-serif;
 }
 
 .background-img::before {
-  content: '';
+  content: "";
   position: fixed;
   background-image: url(/img/scary-img.jpg);
   top: 0;
@@ -45,7 +45,7 @@ body {
 }
 .first-page .intro_header {
   margin-bottom: 122px;
-  font-family: 'Dinobots', sans-serif;
+  font-family: "Dinobots", sans-serif;
   width: 100%;
   text-align: center;
 }
@@ -56,7 +56,7 @@ body {
   text-align: center;
 }
 .first-page button {
-  font-family: 'Dinobots', sans-serif;
+  font-family: "Dinobots", sans-serif;
   padding: 7px 12px;
   border-radius: 40px;
   font-size: 28px;
@@ -184,11 +184,11 @@ body {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 150px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  height: 100vh; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
@@ -199,6 +199,7 @@ body {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
+
   border: 1px solid #888;
   width: 80%;
   color: #333;
