@@ -11,26 +11,26 @@
 //when we click on show results it our previous section disapears and we now show a header paragraph and image with text and image based on the category our score is in
 
 //on click of the button we get sent to our form
-const startBtn = document.querySelector('.startBtn');
-const firstPage = document.querySelector('.first-page');
-const secondPage = document.querySelector('.page-two');
-const audio1 = document.getElementById('myAudio1');
+const startBtn = document.querySelector(".startBtn");
+const firstPage = document.querySelector(".first-page");
+const secondPage = document.querySelector(".page-two");
+const audio1 = document.getElementById("myAudio1");
 
-startBtn.addEventListener('click', () => {
-  firstPage.classList.toggle('disabled');
-  secondPage.classList.toggle('button-active');
+startBtn.addEventListener("click", () => {
+  firstPage.classList.toggle("disabled");
+  secondPage.classList.toggle("button-active");
   // audio for starting quiz
-  audio1.play();
+  // audio1.play();
 });
 
 // fetch data from json file
 async function getQuizData() {
   try {
-    let response = await fetch('./db.json');
+    let response = await fetch("./db.json");
     let quizData = await response.json();
     return quizData;
   } catch (error) {
-    console.log('error :', error);
+    console.log("error :", error);
   }
 }
 
@@ -41,11 +41,11 @@ async function assignQandA() {
   let index = 0;
 
   //assign first q and answers
-  document.querySelector('.question').innerHTML = quizData[index].question;
-  document.querySelector('.answer1').innerHTML = quizData[index].answers[0];
-  document.querySelector('.answer2').innerHTML = quizData[index].answers[1];
-  document.querySelector('.answer3').innerHTML = quizData[index].answers[2];
-  document.querySelector('.answer4').innerHTML = quizData[index].answers[3]; // this works
+  document.querySelector(".question").innerHTML = quizData[index].question;
+  document.querySelector(".answer1").innerHTML = quizData[index].answers[0];
+  document.querySelector(".answer2").innerHTML = quizData[index].answers[1];
+  document.querySelector(".answer3").innerHTML = quizData[index].answers[2];
+  document.querySelector(".answer4").innerHTML = quizData[index].answers[3]; // this works
 
   // assign next q and answers on the press of next
   nextButton(index, quizData);
@@ -55,30 +55,30 @@ assignQandA();
 
 // f that stores which answer the user selected
 function nextButton(index, quizData) {
-  document.querySelector('#nextBtn').addEventListener('click', (e) => {
+  document.querySelector("#nextBtn").addEventListener("click", (e) => {
     e.preventDefault(); // prevents form from redfreshing (default action)
 
-    var audio = document.getElementById('myAudio');
-    audio.play();
+    var audio = document.getElementById("myAudio");
+    // audio.play(); disabled audio btn for now
 
     if (index < 10) {
       index++;
 
-      document.querySelector('.question').innerHTML = quizData[index].question;
-      document.querySelector('.answer1').innerText = quizData[index].answers[0];
-      document.querySelector('.answer2').innerHTML = quizData[index].answers[1];
-      document.querySelector('.answer3').innerHTML = quizData[index].answers[2];
-      document.querySelector('.answer4').innerHTML = quizData[index].answers[3];
+      document.querySelector(".question").innerHTML = quizData[index].question;
+      document.querySelector(".answer1").innerText = quizData[index].answers[0];
+      document.querySelector(".answer2").innerHTML = quizData[index].answers[1];
+      document.querySelector(".answer3").innerHTML = quizData[index].answers[2];
+      document.querySelector(".answer4").innerHTML = quizData[index].answers[3];
 
       if (index == 9) {
         checkAnswer();
         //when it gets to Q10 change btn to submit not next and add input here
         //we can press it once to check answer and record score but after that we should disable next btn, add name input field and show results btn
 
-        document.querySelector('#nextBtn').innerHTML = 'Submit';
-        document.querySelector('#nextBtn').classList.add('disabled');
-        document.querySelector('.inputName').classList.remove('disabled');
-        document.querySelector('#resultBtn').classList.remove('disabled');
+        document.querySelector("#nextBtn").innerHTML = "Submit";
+        document.querySelector("#nextBtn").classList.add("disabled");
+        document.querySelector(".inputName").classList.remove("disabled");
+        document.querySelector("#resultBtn").classList.remove("disabled");
       }
     }
 
@@ -92,7 +92,7 @@ function nextButton(index, quizData) {
 
 let score = 0;
 function checkAnswer() {
-  let elements = document.getElementsByName('answer');
+  let elements = document.getElementsByName("answer");
   // select from our html all elements where our answer is stored in an array
   for (let i = 0; i < elements.length; i++) {
     // go through each answer element
@@ -100,26 +100,26 @@ function checkAnswer() {
     // check that there is a radio btn checked before, no null enters
     if (elements[i].checked) {
       // check if elem has its radio button checked
-      if (elements[i].id == 'a1') {
+      if (elements[i].id == "a1") {
         // if radio button with id of a1 is checked then:
         score += 1; // add 1p to our score
         elements[i].checked = false;
-        console.log('answer 1 selected, score= 1p');
+        console.log("answer 1 selected, score= 1p");
         console.log(score);
-      } else if (elements[i].id == 'a2') {
+      } else if (elements[i].id == "a2") {
         score += 2;
         elements[i].checked = false;
-        console.log('answer 2 selected, score= 2p');
+        console.log("answer 2 selected, score= 2p");
         console.log(score);
-      } else if (elements[i].id == 'a3') {
+      } else if (elements[i].id == "a3") {
         score += 3;
         elements[i].checked = false;
-        console.log('answer 3 selected, score= 3p');
+        console.log("answer 3 selected, score= 3p");
         console.log(score);
       } else {
         score += 4;
         elements[i].checked = false;
-        console.log('answer 4 selected, score= 4p');
+        console.log("answer 4 selected, score= 4p");
         console.log(score);
       }
     } //else alert("please select a ")
@@ -128,7 +128,7 @@ function checkAnswer() {
 
 //firebase config stuff
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
 import {
   getFirestore,
   collection,
@@ -139,15 +139,15 @@ import {
   query,
   orderBy,
   limit,
-} from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';
+} from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAmIkqG14gdj6X5G7lqGnRhexqH9bQoE78',
-  authDomain: 'quizz-b6106.firebaseapp.com',
-  projectId: 'quizz-b6106',
-  storageBucket: 'quizz-b6106.appspot.com',
-  messagingSenderId: '320183610957',
-  appId: '1:320183610957:web:84331f0dc3cdfe3d227604',
+  apiKey: "AIzaSyAmIkqG14gdj6X5G7lqGnRhexqH9bQoE78",
+  authDomain: "quizz-b6106.firebaseapp.com",
+  projectId: "quizz-b6106",
+  storageBucket: "quizz-b6106.appspot.com",
+  messagingSenderId: "320183610957",
+  appId: "1:320183610957:web:84331f0dc3cdfe3d227604",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -158,24 +158,24 @@ const db = getFirestore(app);
 async function storeInDb(name, score) {
   if (!userInput.value && !score) return null;
   try {
-    const docRef = await addDoc(collection(db, 'scores'), {
+    const docRef = await addDoc(collection(db, "scores"), {
       name: name,
       score: score,
     });
   } catch (e) {
-    console.error('Error adding document: ', e);
+    console.error("Error adding document: ", e);
   }
 }
 
-let userInput = document.querySelector('#name');
+let userInput = document.querySelector("#name");
 
 // on click of show results the user name input and the score  will be stored in firebase and then our form is disabled and our result box is enabled where based on the score we get 1 of 4 results
 async function showResults() {
-  document.querySelector('#resultBtn').addEventListener('click', (e) => {
+  document.querySelector("#resultBtn").addEventListener("click", (e) => {
     e.preventDefault();
     storeInDb(userInput.value, score);
-    document.querySelector('.quizzForm').classList.add('disabled');
-    document.querySelector('.resultContainer').classList.remove('disabled');
+    document.querySelector(".quizzForm").classList.add("disabled");
+    document.querySelector(".resultContainer").classList.remove("disabled");
     // here show answer box based on score no
     showResultCategory(score);
     // here we can have our btn for our lederboard
@@ -186,26 +186,26 @@ showResults();
 
 let resultCategories = [
   {
-    img: './img/1.gif',
-    title: 'Norman Bates',
+    img: "./img/1.gif",
+    title: "Norman Bates",
     description:
       "You're kind and thoughtfull , but everyone has it's limits. you're always one bad day away from stabbing your mom and wearing her clothes around the house. Advice? try meditation.",
   },
   {
-    img: './img/2.gif',
-    title: 'Jeffrey Dahmer',
+    img: "./img/2.gif",
+    title: "Jeffrey Dahmer",
     description:
-      'You are a natural introvert and enjoy many hobbies but go through a bad breakup or get drunkenly rejected and you too can start your very own collection of pickled people.',
+      "You are a natural introvert and enjoy many hobbies but go through a bad breakup or get drunkenly rejected and you too can start your very own collection of pickled people.",
   },
   {
-    img: './img/3.gif',
-    title: 'Charles Manson',
+    img: "./img/3.gif",
+    title: "Charles Manson",
     description:
       "You are the life of the party, charming and with a great sense of humour, but if your ego goes unchecked you're one friend away from starting your own death cult.",
   },
   {
-    img: './img/4.gif',
-    title: 'Patrick Bateman',
+    img: "./img/4.gif",
+    title: "Patrick Bateman",
     description:
       "You are ambitous, charming and take great pride in your apearance but if you don't learn to take yourself less seriously you're one poorly chosen font style away from giving your work mate an axe haircut.",
   },
@@ -213,9 +213,9 @@ let resultCategories = [
 
 // grab all the fields of the result box we show at the end
 
-const resultImg = document.querySelector('.img');
-const resultHeader = document.querySelector('.resultHeader');
-const resultParagraph = document.querySelector('.resultParagraph');
+const resultImg = document.querySelector(".img");
+const resultHeader = document.querySelector(".resultHeader");
+const resultParagraph = document.querySelector(".resultParagraph");
 
 // this function checks our score and places our result in one of 4 categories, then lists a custom response box in the browser
 
@@ -240,17 +240,18 @@ function showResultCategory(score) {
 }
 
 //Get all score/usernames from firebase then populate leaderboard field
-let leaderboardList = document.querySelector('.leaderboard-list');
+let leaderboardList = document.querySelector(".leaderboard-list");
 
-// const q = query(scores, orderBy("score"), limit(3));
+const scoresRef = collection(db, "scores");
+const q = query(scoresRef, orderBy("score", "desc"), limit(10));
 
 async function getScores() {
-  const querySnapshot = await getDocs(collection(db, 'scores'));
+  const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     leaderboardList.innerHTML += `<li class="leaderboard-list-item"> ${
       doc.data().name
     } &nbsp &nbsp ${doc.data().score}</li>`;
-    console.log(doc.id, ' => ', doc.data());
+    // console.log(doc.id, " => ", doc.data());
   });
 }
 
@@ -258,20 +259,20 @@ getScores();
 
 // grab the leaderboard button and on click display scores from previous users taken from firebase
 
-var modal = document.querySelector('#leaderboardModal');
-let leaderboardBtn = document.querySelector('.leaderboardBtn');
-var span = document.getElementsByClassName('close')[0];
+var modal = document.querySelector("#leaderboardModal");
+let leaderboardBtn = document.querySelector(".leaderboardBtn");
+var span = document.getElementsByClassName("close")[0];
 
-leaderboardBtn.addEventListener('click', () => {
-  modal.style.display = 'block';
+leaderboardBtn.addEventListener("click", () => {
+  modal.style.display = "block";
 });
 
 span.onclick = function () {
-  modal.style.display = 'none';
+  modal.style.display = "none";
 };
 
 window.onclick = function (event) {
   if (event.target == modal) {
-    modal.style.display = 'none';
+    modal.style.display = "none";
   }
 };
