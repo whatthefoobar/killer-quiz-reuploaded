@@ -19,8 +19,8 @@ const audio1 = document.getElementById("myAudio1");
 startBtn.addEventListener("click", () => {
   firstPage.classList.toggle("disabled");
   secondPage.classList.toggle("button-active");
-  // audio for starting quiz
-  // audio1.play();
+   audio for starting quiz
+   audio1.play();
 });
 
 // fetch data from json file
@@ -59,7 +59,7 @@ function nextButton(index, quizData) {
     e.preventDefault(); // prevents form from redfreshing (default action)
 
     var audio = document.getElementById("myAudio");
-    // audio.play(); disabled audio btn for now
+     audio.play(); 
 
     if (index < 10) {
       index++;
